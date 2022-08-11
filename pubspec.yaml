@@ -25,3 +25,10 @@ flutter:
 
   assets:
     - assets/images/
+  
+
+  fonts:
+    - family: PT Serif
+      fonts:
+        - asset: assets/fonts/PTSerif-Bold.ttf
+        
