@@ -1,5 +1,6 @@
 class StringConst{
   static const login = "Login";
+  static const backToLogin = "Back to login";
   static const signUp = "Sign Up";
   static const rememberMe = "Remember me";
   static const name = "Name";
@@ -8,4 +9,6 @@ class StringConst{
   static const password = "Password";
   static const passwordAgain = "Password(Again)";
   static const phone = "Phone";
+  static const products = "Products";
+  static const productDetail = "Product Detail";
 }

@@ -7,4 +7,9 @@ const styleAuthHeaderTxt =
 const styleBottomTextButton =
     TextStyle(fontFamily: AssetConst.fontPtSerif, fontSize: 21);
 
+const styleAppBarTxt =
+    TextStyle(fontFamily: AssetConst.fontPtSerif,fontSize: 21);
+
 const bottomTextButtonPadding = 6.0;
+
+const horizontalPagePadding = 15.0;

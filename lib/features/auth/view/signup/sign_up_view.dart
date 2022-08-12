@@ -21,7 +21,7 @@ class SignUpView extends StatelessWidget {
               children: [
                 const AuthHeader(),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: horizontalPagePadding),
                   child: Column(
                     children: const [
                       SizedBox(height: 30),

@@ -7,6 +7,7 @@ import 'package:piton_assignment/features/auth/widgets/auth_header.dart';
 import 'package:piton_assignment/features/auth/widgets/custom_button.dart';
 
 import 'package:piton_assignment/features/auth/widgets/custom_text_form.dart';
+import 'package:piton_assignment/features/products/views/products_home/products_home_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class _LoginViewState extends State<LoginView> {
         const AuthHeader(),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: horizontalPagePadding),
             child: Column(
               children: [
                 const SizedBox(height: 30),
@@ -42,7 +43,15 @@ class _LoginViewState extends State<LoginView> {
                     passwordMode: true,
                     prefixIcon: Icon(Icons.lock),
                     hintText: StringConst.password),
-                const CustomButton(label: StringConst.login),
+                CustomButton(
+                  label: StringConst.login,
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ProductsHomeView()));
+                  },
+                ),
                 CheckboxListTile(
                     activeColor: Colors.black,
                     title: const Text(StringConst.rememberMe),
