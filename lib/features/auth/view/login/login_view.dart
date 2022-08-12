@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:piton_assignment/core/const/string_const.dart';
 import 'package:piton_assignment/core/style/style.dart';
+import 'package:piton_assignment/features/auth/view/signup/sign_up_view.dart';
 import 'package:piton_assignment/features/auth/widgets/auth_header.dart';
 import 'package:piton_assignment/features/auth/widgets/custom_button.dart';
 
@@ -55,7 +56,12 @@ class _LoginViewState extends State<LoginView> {
                   padding:
                       const EdgeInsets.only(bottom: bottomTextButtonPadding),
                   child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SignUpView()));
+                      },
                       child: const Text(
                         StringConst.signUp,
                         style: styleBottomTextButton,
