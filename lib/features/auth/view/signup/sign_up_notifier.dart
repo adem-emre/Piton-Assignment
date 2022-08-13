@@ -13,7 +13,6 @@ class SignUpNotifier extends ChangeNotifier {
   Future<bool> signUp() async {
     var token = await _loginService.signUp(userName, password, mail);
     if (token != null) {
-      print(token);
       AuthManager.token = token;
       return true;
     }

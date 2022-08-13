@@ -144,7 +144,7 @@ class SignUpForm extends StatelessWidget {
                         builder: (context) => const ProductsHomeView()),
                     (route) => false);
               }else{
-                Fluttertoast.showToast(msg: "An error occured");
+                Fluttertoast.showToast(msg: StringConst.errMsg);
               }
               }
              

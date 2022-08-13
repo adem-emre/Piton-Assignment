@@ -11,4 +11,5 @@ class StringConst{
   static const phone = "Phone";
   static const products = "Products";
   static const productDetail = "Product Detail";
+  static const errMsg = "An error occured";
 }
