@@ -13,6 +13,8 @@ class CustomTextForm extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final void Function(String?)? onSaved;
   final String? initialValue;
+  final List<TextInputFormatter>? inputFormatters;
+  final TextEditingController? controller;
 
   const CustomTextForm({
     this.maxLines = 1,
@@ -27,6 +29,8 @@ class CustomTextForm extends StatelessWidget {
     this.textStyle,
     this.onSaved,
     this.initialValue,
+    this.inputFormatters,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -36,6 +40,7 @@ class CustomTextForm extends StatelessWidget {
       child: Material(
         elevation: 4,
         child: TextFormField(
+          controller: controller,
           initialValue: initialValue,
           onSaved: onSaved,
           style: textStyle,
@@ -44,9 +49,7 @@ class CustomTextForm extends StatelessWidget {
           maxLength: maxLength,
           keyboardType: keyboardType,
           validator: validator,
-          inputFormatters: keyboardType == TextInputType.number
-              ? [FilteringTextInputFormatter.digitsOnly]
-              : null,
+          inputFormatters: inputFormatters,
           decoration: InputDecoration(
               errorMaxLines: 2,
               prefixIcon: prefixIcon,

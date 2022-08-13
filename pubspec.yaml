@@ -13,6 +13,10 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  http: ^0.13.5
+  mask_text_input_formatter: ^2.4.0
+  provider: ^6.0.3
+  fluttertoast: ^8.0.9
 
 dev_dependencies:
   flutter_test:
@@ -25,10 +29,8 @@ flutter:
 
   assets:
     - assets/images/
-  
 
   fonts:
     - family: PT Serif
       fonts:
         - asset: assets/fonts/PTSerif-Bold.ttf
-        
