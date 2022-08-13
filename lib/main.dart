@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:piton_assignment/core/theme/theme.dart';
-
-import 'features/auth/view/login/login_view.dart';
-
+import 'package:piton_assignment/features/auth/view/splash/splash_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: mainTheme,
-      home: const LoginView(),
+      home: const SplashView(),
     );
   }
 }
