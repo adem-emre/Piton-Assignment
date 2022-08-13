@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:piton_assignment/core/const/color_const.dart';
+import 'package:piton_assignment/features/products/views/product_detail/product_detail_view.dart';
 
 import 'favourite_button.dart';
 
@@ -9,7 +10,10 @@ class GridProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ProductDetailView()));
+      },
       splashColor: Colors.purple,
       child: Card(
         color: ColorConst.gridProductItemColor,
