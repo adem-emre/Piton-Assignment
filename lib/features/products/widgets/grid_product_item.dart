@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:piton_assignment/core/const/color_const.dart';
+import 'package:piton_assignment/core/const/service_const.dart';
+import 'package:piton_assignment/features/products/model/product_model.dart';
 import 'package:piton_assignment/features/products/views/product_detail/product_detail_view.dart';
 
 import 'favourite_button.dart';
 
 class GridProductItem extends StatelessWidget {
-  const GridProductItem({Key? key}) : super(key: key);
-
+  const GridProductItem({Key? key, required this.product}) : super(key: key);
+  final Product product;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -25,7 +27,7 @@ class GridProductItem extends StatelessWidget {
                 Expanded(
                     flex: 7,
                     child: Image.network(
-                      "https://cdn-ss.akinon.net/products/2021/01/26/143326/fff4112f-12a8-47b3-8e1b-721467ab46f2.jpg",
+                      ServiceConst.imageBaseUrl+(product.image ?? ""),
                       fit: BoxFit.cover,
                       width: double.infinity,
                     )),
@@ -37,17 +39,17 @@ class GridProductItem extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            "Lorem ips " * 5,
+                            product.name ?? "",
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const Spacer(),
-                          const Align(
+                          Align(
                             alignment: Alignment.bottomRight,
                             child: Text(
-                              "125 TL",
-                              style: TextStyle(color: Colors.green),
+                              "${product.price ?? ""} TL",
+                              style: const TextStyle(color: Colors.green),
                             ),
                           )
                         ],
