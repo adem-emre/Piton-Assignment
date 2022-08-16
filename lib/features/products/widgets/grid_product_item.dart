@@ -57,7 +57,7 @@ class GridProductItem extends StatelessWidget {
                     ))
               ],
             ),
-            const FavouriteButton(),
+             FavouriteButton(productId: product.id ?? 0,likeList: product.likes,),
           ],
         ),
       ),

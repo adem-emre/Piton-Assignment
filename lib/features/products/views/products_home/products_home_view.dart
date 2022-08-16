@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:piton_assignment/core/const/string_const.dart';
 import 'package:piton_assignment/core/style/style.dart';
+import 'package:piton_assignment/features/auth/view/login/login_view.dart';
 import 'package:piton_assignment/features/products/enum/load_state.dart';
 import 'package:piton_assignment/features/products/service/product_service.dart';
 import 'package:piton_assignment/features/products/views/products_home/products_home_notifier.dart';
@@ -20,7 +22,21 @@ class ProductsHomeView extends StatelessWidget {
           appBar: AppBar(
             title: const Text(StringConst.products),
             actions: [
-              IconButton(onPressed: () {}, icon: const Icon(Icons.logout))
+              IconButton(
+                  onPressed: () async {
+                    bool success =
+                        await context.read<ProductsHomeNotifier>().logout();
+                    if (success) {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginView()),
+                          (route) => false);
+                    } else {
+                      Fluttertoast.showToast(msg: StringConst.errMsg);
+                    }
+                  },
+                  icon: const Icon(Icons.logout))
             ],
           ),
           body: Padding(

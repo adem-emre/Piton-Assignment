@@ -13,9 +13,9 @@ class SharedHelper{
     return prefs.getString(_token);
   }
 
-  Future<void> clearAll()async{
+  Future<bool> clearAll()async{
     final prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
+    return await prefs.clear();
   }
 
 }
