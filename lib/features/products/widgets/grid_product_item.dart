@@ -7,15 +7,13 @@ import 'package:piton_assignment/features/products/views/product_detail/product_
 import 'favourite_button.dart';
 
 class GridProductItem extends StatelessWidget {
-  const GridProductItem({Key? key, required this.product}) : super(key: key);
+  const GridProductItem({Key? key, required this.product, required this.onTap}) : super(key: key);
   final Product product;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const ProductDetailView()));
-      },
+      onTap: onTap,
       splashColor: Colors.purple,
       child: Card(
         color: ColorConst.gridProductItemColor,

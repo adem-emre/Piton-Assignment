@@ -1,21 +1,17 @@
-class ProductListModel {
-  List<Product>? products;
+class ProductDetailModel {
+  Product? product;
 
-  ProductListModel({this.products});
+  ProductDetailModel({this.product});
 
-  ProductListModel.fromJson(Map<String, dynamic> json) {
-    if (json['products'] != null) {
-      products = <Product>[];
-      json['products'].forEach((v) {
-        products!.add(Product.fromJson(v));
-      });
-    }
+  ProductDetailModel.fromJson(Map<String, dynamic> json) {
+    product =
+        json['product'] != null ? Product.fromJson(json['product']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if (products != null) {
-      data['products'] = products!.map((v) => v.toJson()).toList();
+    if (product != null) {
+      data['product'] = product!.toJson();
     }
     return data;
   }
@@ -69,40 +65,18 @@ class Product {
   }
 }
 
-
 class Likes {
   int? id;
-  String? email;
-  String? password;
-  String? name;
-  String? token;
-  int? timeStamp;
 
-  Likes(
-      {this.id,
-      this.email,
-      this.password,
-      this.name,
-      this.token,
-      this.timeStamp});
+  Likes({this.id});
 
   Likes.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    email = json['email'];
-    password = json['password'];
-    name = json['name'];
-    token = json['token'];
-    timeStamp = json['timeStamp'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
-    data['email'] = email;
-    data['password'] = password;
-    data['name'] = name;
-    data['token'] = token;
-    data['timeStamp'] = timeStamp;
     return data;
   }
 }

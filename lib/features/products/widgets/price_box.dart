@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class PriceBox extends StatelessWidget {
   const PriceBox({
     Key? key,
+    required this.price,
   }) : super(key: key);
+  final double price;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,10 @@ class PriceBox extends StatelessWidget {
               offset: const Offset(0, 4), // changes position of shadow
             ),
           ], color: Colors.black, shape: const StadiumBorder()),
-          child: const Center(
+          child: Center(
             child: Text(
-              "125 TL",
-              style: TextStyle(color: Colors.white),
+              "$price TL",
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ));

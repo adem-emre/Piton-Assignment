@@ -9,6 +9,8 @@ import 'package:piton_assignment/features/products/views/products_home/products_
 import 'package:piton_assignment/features/products/widgets/grid_product_item.dart';
 import 'package:provider/provider.dart';
 
+import '../product_detail/product_detail_view.dart';
+
 class ProductsHomeView extends StatelessWidget {
   const ProductsHomeView({Key? key}) : super(key: key);
 
@@ -61,6 +63,19 @@ class ProductsHomeView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return GridProductItem(
                           product: productsNotifier.products[index],
+                          onTap: () {
+                            final productId =
+                                productsNotifier.products[index].id;
+                            if (productId != null) {
+                              debugPrint("Gelen id : $productId");
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ProductDetailView(
+                                            productId: productId,
+                                          )));
+                            }
+                          },
                         );
                       });
                 } else {
