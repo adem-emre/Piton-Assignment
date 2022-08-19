@@ -36,7 +36,7 @@ class ProductService {
     }
   }
 
-  Future likeProduct(int productId) async {
+  Future<bool> likeProduct(int productId) async {
     var body = {"productId": productId};
     var response = await http.post(
         Uri.parse(ServiceConst.baseUrl + ServiceConst.likeProduct),
@@ -45,14 +45,15 @@ class ProductService {
     if (response.statusCode == 200) {
       var resBody = jsonDecode(response.body);
       var status = resBody["status"];
-      return status;
+      return status == "Success";
     } else {
       var reason = jsonDecode(response.body);
       throw Exception(reason["reason"]);
     }
+    
   }
 
-  Future dislikeProduct(int productId) async {
+  Future<bool> dislikeProduct(int productId) async {
     var body = {"productId": productId};
     var response = await http.post(
         Uri.parse(ServiceConst.baseUrl + ServiceConst.unlikeProduct),
@@ -61,7 +62,7 @@ class ProductService {
     if (response.statusCode == 200) {
       var resBody = jsonDecode(response.body);
       var status = resBody["status"];
-      return status;
+      return status == "Success";
     } else {
       var reason = jsonDecode(response.body);
       throw Exception(reason["reason"]);

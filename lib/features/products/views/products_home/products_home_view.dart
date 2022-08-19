@@ -67,7 +67,6 @@ class ProductsHomeView extends StatelessWidget {
                             final productId =
                                 productsNotifier.products[index].id;
                             if (productId != null) {
-                              debugPrint("Gelen id : $productId");
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(

@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:piton_assignment/core/auth/auth_manager.dart';
-import 'package:piton_assignment/features/products/model/product_model.dart';
+
+import '../model/product_detail_model.dart';
 
 class FavouriteButton extends StatelessWidget {
   const FavouriteButton(
-      {Key? key, required this.productId, required this.likeList})
+      {Key? key,
+      required this.productId,
+      required this.likeList,
+      required this.onTap})
       : super(key: key);
   final int productId;
   final List<Likes>? likeList;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
-        top: 9,
-        right: 9,
+        top: 12,
+        right: 12,
         child: InkWell(
-          onTap: () {},
+          onTap: onTap,
           child: Container(
               padding: const EdgeInsets.all(3),
               decoration: BoxDecoration(boxShadow: [
@@ -25,16 +29,12 @@ class FavouriteButton extends StatelessWidget {
                   offset: const Offset(0, 4), // changes position of shadow
                 ),
               ], color: Colors.white, shape: BoxShape.circle),
-              child: _isLiked()
-                  ? const Icon(Icons.favorite)
-                  : const Icon(Icons.favorite_border)),
+              child: Icon(
+                (likeList != null && likeList!.isNotEmpty)
+                    ? Icons.favorite
+                    : Icons.favorite_border,
+                size: 30,
+              )),
         ));
-  }
-
-  bool _isLiked() {
-    if (likeList != null && likeList!.isNotEmpty) {
-      return likeList!.any((element) => element.token == AuthManager.token);
-    }
-    return false;
   }
 }

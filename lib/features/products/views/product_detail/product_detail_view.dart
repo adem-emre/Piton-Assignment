@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:piton_assignment/core/const/service_const.dart';
 import 'package:piton_assignment/core/const/string_const.dart';
-import 'package:piton_assignment/core/extensions/size_extension.dart';
 import 'package:piton_assignment/core/style/style.dart';
 import 'package:piton_assignment/features/products/service/product_service.dart';
 import 'package:piton_assignment/features/products/views/product_detail/product_detail_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../../enum/load_state.dart';
-import '../../widgets/price_box.dart';
+import '../../widgets/favourite_button.dart';
 
 class ProductDetailView extends StatelessWidget {
   const ProductDetailView({Key? key, required this.productId})
@@ -27,8 +27,9 @@ class ProductDetailView extends StatelessWidget {
           return Consumer<ProductDetailNotifier>(
             builder: (context, productDetailNotfier, _) {
               if (productDetailNotfier.loadState == LoadState.error) {
-                return  Center(
-                  child: Text(StringConst.errMsg + productDetailNotfier.errorMsg),
+                return Center(
+                  child:
+                      Text(StringConst.errMsg + productDetailNotfier.errorMsg),
                 );
               } else if (productDetailNotfier.loadState == LoadState.loaded) {
                 return Column(
@@ -55,11 +56,20 @@ class ProductDetailView extends StatelessWidget {
                                 width: double.infinity,
                               ),
                             ),
-                            PriceBox(
-                              price:
-                                  productDetailNotfier.productDetail!.price ??
-                                      0,
-                            )
+                            FavouriteButton(
+                              productId:
+                                  productDetailNotfier.productDetail?.id ?? 0,
+                              likeList:
+                                  productDetailNotfier.productDetail?.likes,
+                              onTap: () async {
+                                bool success = await productDetailNotfier
+                                    .likeOrUnlike(productId);
+                                if (!success) {
+                                  Fluttertoast.showToast(
+                                      msg: StringConst.errMsg);
+                                }
+                              },
+                            ),
                           ],
                         )),
                     Expanded(
@@ -70,10 +80,21 @@ class ProductDetailView extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              _LikeCountButton(
-                                likeCount: productDetailNotfier
-                                        .productDetail!.likes?.length ??
-                                    0,
+                              const SizedBox(
+                                height: itemBetweenPadding,
+                              ),
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: Text(
+                                  "${productDetailNotfier.productDetail!.price ?? ""} TL",
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: itemBetweenPadding,
                               ),
                               Text(
                                 productDetailNotfier.productDetail?.name ?? "",
@@ -84,7 +105,9 @@ class ProductDetailView extends StatelessWidget {
                                 height: 9,
                               ),
                               Text(
-                                productDetailNotfier.productDetail?.description ?? "",
+                                productDetailNotfier
+                                        .productDetail?.description ??
+                                    "",
                                 style: TextStyle(color: Colors.grey.shade600),
                               ),
                               const Spacer(),
@@ -123,50 +146,6 @@ class _CartButton extends StatelessWidget {
         label: const Text("Add to Cart"),
         onPressed: () {},
       ),
-    );
-  }
-}
-
-class _LikeCountButton extends StatelessWidget {
-  const _LikeCountButton({
-    Key? key,
-    required this.likeCount,
-  }) : super(key: key);
-  final int likeCount;
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: TextButton.icon(
-          onPressed: () {
-            showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    content: Container(
-                      width: double.maxFinite,
-                      constraints: BoxConstraints(
-                        maxHeight: context.setScaledHeight(0.42),
-                      ),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 15,
-                        itemBuilder: (context, index) {
-                          return const ListTile(
-                            leading: CircleAvatar(
-                              child: Text("A"),
-                            ),
-                            title: Text("Piton Store"),
-                            subtitle: Text("piton@mail.com"),
-                          );
-                        },
-                      ),
-                    ),
-                  );
-                });
-          },
-          icon: const Icon(Icons.favorite),
-          label: Text("($likeCount)")),
     );
   }
 }

@@ -13,3 +13,4 @@ const styleAppBarTxt =
 const bottomTextButtonPadding = 6.0;
 
 const horizontalPagePadding = 15.0;
+const itemBetweenPadding = 18.0;
