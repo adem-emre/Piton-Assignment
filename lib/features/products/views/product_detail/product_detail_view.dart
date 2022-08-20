@@ -21,7 +21,7 @@ class ProductDetailView extends StatelessWidget {
         title: const Text(StringConst.productDetail),
       ),
       body: ChangeNotifierProvider(
-        create: (context) => ProductDetailNotifier(ProductService())
+        create: (context) => ProductDetailNotifier()
           ..getProductDetailById(productId),
         child: Builder(builder: (context) {
           return Consumer<ProductDetailNotifier>(

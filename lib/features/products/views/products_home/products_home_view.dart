@@ -18,7 +18,7 @@ class ProductsHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) =>
-          ProductsHomeNotifier(ProductService())..getAllProducts(),
+          ProductsHomeNotifier()..getAllProducts(),
       child: Builder(builder: (context) {
         return Scaffold(
           appBar: AppBar(

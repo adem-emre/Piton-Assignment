@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:piton_assignment/core/theme/theme.dart';
 import 'package:piton_assignment/features/auth/view/splash/splash_view.dart';
+import 'package:piton_assignment/locator.dart';
 
 void main() {
+  setup();
   runApp(const MyApp());
 }
 

@@ -20,7 +20,7 @@ class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<SignUpNotifier>(
-      create: (context) => SignUpNotifier(LoginService()),
+      create: (context) => SignUpNotifier(),
       child: Scaffold(
           body: Column(
         children: [

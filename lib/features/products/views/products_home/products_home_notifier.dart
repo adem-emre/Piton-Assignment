@@ -6,15 +6,16 @@ import 'package:piton_assignment/features/products/enum/load_state.dart';
 import 'package:piton_assignment/features/products/model/product_model.dart';
 import 'package:piton_assignment/features/products/service/product_service.dart';
 
+import '../../../../locator.dart';
+
 class ProductsHomeNotifier extends ChangeNotifier {
-  final ProductService _productService;
+    final ProductService _productService = getIt<ProductService>();
   LoadState _loadState = LoadState.idle;
   LoadState get loadState => _loadState;
   String _errorMsg = "";
   String get errorMsg => _errorMsg;
   List<Product> _products = [];
   List<Product> get products => _products;
-  ProductsHomeNotifier(this._productService);
 
   Future getAllProducts() async {
     try {

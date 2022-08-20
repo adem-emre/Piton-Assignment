@@ -28,7 +28,7 @@ class Product {
   String? image;
   String? description;
   String? timeStamp;
-  List<Likes>? likes;
+  int? likes;
 
   Product(
       {this.id,
@@ -46,12 +46,7 @@ class Product {
     image = json['image'];
     description = json['description'];
     timeStamp = json['timeStamp'];
-    if (json['likes'] != null) {
-      likes = <Likes>[];
-      json['likes'].forEach((v) {
-        likes!.add(Likes.fromJson(v));
-      });
-    }
+    likes=json["likes"];
   }
 
   Map<String, dynamic> toJson() {
@@ -62,9 +57,7 @@ class Product {
     data['image'] = image;
     data['description'] = description;
     data['timeStamp'] = timeStamp;
-    if (likes != null) {
-      data['likes'] = likes!.map((v) => v.toJson()).toList();
-    }
+    data['likes'] = likes;
     return data;
   }
 }

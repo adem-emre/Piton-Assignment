@@ -29,7 +29,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => LoginNotifier(LoginService(), SharedHelper()),
+      create: (context) => LoginNotifier(),
       child: Builder(builder: (context) {
         return Scaffold(
             resizeToAvoidBottomInset: false,

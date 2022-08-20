@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
+import 'package:piton_assignment/locator.dart';
 
 import '../../../../core/const/string_const.dart';
 import '../../enum/load_state.dart';
@@ -8,7 +9,7 @@ import '../../model/product_detail_model.dart';
 import '../../service/product_service.dart';
 
 class ProductDetailNotifier extends ChangeNotifier {
-  final ProductService _productService;
+  final ProductService _productService = getIt<ProductService>();
   LoadState _loadState = LoadState.idle;
 
   LoadState get loadState => _loadState;
@@ -16,7 +17,7 @@ class ProductDetailNotifier extends ChangeNotifier {
   String get errorMsg => _errorMsg;
   Product? _productDetail;
   Product? get productDetail => _productDetail;
-  ProductDetailNotifier(this._productService);
+  
 
   Future<bool> likeOrUnlike(int productId) async {
     if (productDetail?.likes != null && productDetail!.likes!.isNotEmpty) {
