@@ -14,16 +14,19 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
   Future navigateUser() async {
+    final navigator = Navigator.of(context);
     final sharedHelper = SharedHelper();
     final token = await sharedHelper.getToken();
-    if (token != null) {
-      AuthManager.token = token;
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const ProductsHomeView()));
-    } else {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const LoginView()));
-    }
+   
+      if (token != null) {
+        AuthManager.token = token;
+        navigator.pushReplacement(
+            MaterialPageRoute(builder: (context) => const ProductsHomeView()));
+      } else {
+        navigator.pushReplacement(
+            MaterialPageRoute(builder: (context) => const LoginView()));
+      }
+    
   }
 
   @override

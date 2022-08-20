@@ -3,9 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:piton_assignment/core/const/string_const.dart';
 import 'package:piton_assignment/core/style/style.dart';
-import 'package:piton_assignment/features/auth/helper/shared_helper.dart';
 import 'package:piton_assignment/features/auth/helper/validation_helper.dart';
-import 'package:piton_assignment/features/auth/service/login_service.dart';
 import 'package:piton_assignment/features/auth/view/login/login_notifier.dart';
 import 'package:piton_assignment/features/auth/view/signup/sign_up_view.dart';
 import 'package:piton_assignment/features/auth/widgets/auth_header.dart';
@@ -73,13 +71,13 @@ class _LoginViewState extends State<LoginView> {
                             onFuture: () async {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
+                                final navigator = Navigator.of(context);
                                 bool success =
                                     await context.read<LoginNotifier>().login();
                                 if (success) {
-                                  Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ProductsHomeView()));
+                                  navigator.pushReplacement(MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ProductsHomeView()));
                                 } else {
                                   Fluttertoast.showToast(
                                       msg: StringConst.errMsg);

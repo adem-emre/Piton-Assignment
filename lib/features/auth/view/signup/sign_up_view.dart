@@ -5,7 +5,6 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:piton_assignment/core/const/string_const.dart';
 import 'package:piton_assignment/core/style/style.dart';
 import 'package:piton_assignment/features/auth/helper/validation_helper.dart';
-import 'package:piton_assignment/features/auth/service/login_service.dart';
 import 'package:piton_assignment/features/auth/view/signup/sign_up_notifier.dart';
 import 'package:piton_assignment/features/auth/widgets/auth_header.dart';
 import 'package:piton_assignment/features/auth/widgets/custom_button.dart';
@@ -136,18 +135,17 @@ class SignUpForm extends StatelessWidget {
             onFuture: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                 bool success = await context.read<SignUpNotifier>().signUp();
-              if (success) {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ProductsHomeView()),
-                    (route) => false);
-              }else{
-                Fluttertoast.showToast(msg: StringConst.errMsg);
+                final navigator = Navigator.of(context);
+                bool success = await context.read<SignUpNotifier>().signUp();
+                if (success) {
+                  navigator.pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const ProductsHomeView()),
+                      (route) => false);
+                } else {
+                  Fluttertoast.showToast(msg: StringConst.errMsg);
+                }
               }
-              }
-             
             },
           ),
         ],

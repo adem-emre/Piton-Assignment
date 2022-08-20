@@ -3,7 +3,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:piton_assignment/core/const/service_const.dart';
 import 'package:piton_assignment/core/const/string_const.dart';
 import 'package:piton_assignment/core/style/style.dart';
-import 'package:piton_assignment/features/products/service/product_service.dart';
 import 'package:piton_assignment/features/products/views/product_detail/product_detail_notifier.dart';
 import 'package:provider/provider.dart';
 
@@ -21,8 +20,8 @@ class ProductDetailView extends StatelessWidget {
         title: const Text(StringConst.productDetail),
       ),
       body: ChangeNotifierProvider(
-        create: (context) => ProductDetailNotifier()
-          ..getProductDetailById(productId),
+        create: (context) =>
+            ProductDetailNotifier()..getProductDetailById(productId),
         child: Builder(builder: (context) {
           return Consumer<ProductDetailNotifier>(
             builder: (context, productDetailNotfier, _) {

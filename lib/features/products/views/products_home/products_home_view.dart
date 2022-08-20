@@ -4,7 +4,6 @@ import 'package:piton_assignment/core/const/string_const.dart';
 import 'package:piton_assignment/core/style/style.dart';
 import 'package:piton_assignment/features/auth/view/login/login_view.dart';
 import 'package:piton_assignment/features/products/enum/load_state.dart';
-import 'package:piton_assignment/features/products/service/product_service.dart';
 import 'package:piton_assignment/features/products/views/products_home/products_home_notifier.dart';
 import 'package:piton_assignment/features/products/widgets/grid_product_item.dart';
 import 'package:provider/provider.dart';
@@ -17,8 +16,7 @@ class ProductsHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) =>
-          ProductsHomeNotifier()..getAllProducts(),
+      create: (context) => ProductsHomeNotifier()..getAllProducts(),
       child: Builder(builder: (context) {
         return Scaffold(
           appBar: AppBar(
@@ -26,11 +24,12 @@ class ProductsHomeView extends StatelessWidget {
             actions: [
               IconButton(
                   onPressed: () async {
+                    final navigator = Navigator.of(context);
+
                     bool success =
                         await context.read<ProductsHomeNotifier>().logout();
                     if (success) {
-                      Navigator.pushAndRemoveUntil(
-                          context,
+                      navigator.pushAndRemoveUntil(
                           MaterialPageRoute(
                               builder: (context) => const LoginView()),
                           (route) => false);
